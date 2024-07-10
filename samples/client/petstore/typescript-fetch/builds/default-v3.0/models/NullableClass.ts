@@ -97,7 +97,7 @@ export interface NullableClass {
 /**
  * Check if a given object implements the NullableClass interface.
  */
-export function instanceOfNullableClass(value: object): boolean {
+export function instanceOfNullableClass(value: object): value is NullableClass {
     let isInstance = true;
 
     return isInstance;
@@ -112,8 +112,8 @@ export function NullableClassFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     return {
-        
-            ...json,
+
+        ...json,
         'integerProp': !exists(json, 'integer_prop') ? undefined : json['integer_prop'],
         'numberProp': !exists(json, 'number_prop') ? undefined : json['number_prop'],
         'booleanProp': !exists(json, 'boolean_prop') ? undefined : json['boolean_prop'],
@@ -137,13 +137,13 @@ export function NullableClassToJSON(value?: NullableClass | null): any {
         return null;
     }
     return {
-        
-            ...value,
+
+        ...value,
         'integer_prop': value.integerProp,
         'number_prop': value.numberProp,
         'boolean_prop': value.booleanProp,
         'string_prop': value.stringProp,
-        'date_prop': value.dateProp === undefined ? undefined : (value.dateProp === null ? null : value.dateProp.toISOString().substr(0,10)),
+        'date_prop': value.dateProp === undefined ? undefined : (value.dateProp === null ? null : value.dateProp.toISOString().substr(0, 10)),
         'datetime_prop': value.datetimeProp === undefined ? undefined : (value.datetimeProp === null ? null : value.datetimeProp.toISOString()),
         'array_nullable_prop': value.arrayNullableProp,
         'array_and_items_nullable_prop': value.arrayAndItemsNullableProp,

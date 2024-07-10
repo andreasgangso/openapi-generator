@@ -58,7 +58,7 @@ export interface ObjectWithDeprecatedFields {
 /**
  * Check if a given object implements the ObjectWithDeprecatedFields interface.
  */
-export function instanceOfObjectWithDeprecatedFields(value: object): boolean {
+export function instanceOfObjectWithDeprecatedFields(value: object): value is ObjectWithDeprecatedFields {
     let isInstance = true;
 
     return isInstance;
@@ -73,7 +73,7 @@ export function ObjectWithDeprecatedFieldsFromJSONTyped(json: any, ignoreDiscrim
         return json;
     }
     return {
-        
+
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'deprecatedRef': !exists(json, 'deprecatedRef') ? undefined : DeprecatedObjectFromJSON(json['deprecatedRef']),
@@ -89,7 +89,7 @@ export function ObjectWithDeprecatedFieldsToJSON(value?: ObjectWithDeprecatedFie
         return null;
     }
     return {
-        
+
         'uuid': value.uuid,
         'id': value.id,
         'deprecatedRef': DeprecatedObjectToJSON(value.deprecatedRef),

@@ -61,7 +61,7 @@ export interface EnumPatternObject {
 /**
  * Check if a given object implements the EnumPatternObject interface.
  */
-export function instanceOfEnumPatternObject(value: object): boolean {
+export function instanceOfEnumPatternObject(value: object): value is EnumPatternObject {
     let isInstance = true;
 
     return isInstance;
@@ -76,7 +76,7 @@ export function EnumPatternObjectFromJSONTyped(json: any, ignoreDiscriminator: b
         return json;
     }
     return {
-        
+
         'stringEnum': !exists(json, 'string-enum') ? undefined : StringEnumFromJSON(json['string-enum']),
         'nullableStringEnum': !exists(json, 'nullable-string-enum') ? undefined : StringEnumFromJSON(json['nullable-string-enum']),
         'numberEnum': !exists(json, 'number-enum') ? undefined : NumberEnumFromJSON(json['number-enum']),
@@ -92,7 +92,7 @@ export function EnumPatternObjectToJSON(value?: EnumPatternObject | null): any {
         return null;
     }
     return {
-        
+
         'string-enum': StringEnumToJSON(value.stringEnum),
         'nullable-string-enum': StringEnumToJSON(value.nullableStringEnum),
         'number-enum': NumberEnumToJSON(value.numberEnum),

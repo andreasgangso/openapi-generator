@@ -43,7 +43,7 @@ export interface PetRegionsResponse {
 /**
  * Check if a given object implements the PetRegionsResponse interface.
  */
-export function instanceOfPetRegionsResponse(value: object): boolean {
+export function instanceOfPetRegionsResponse(value: object): value is PetRegionsResponse {
     let isInstance = true;
     isInstance = isInstance && "meta" in value;
 
@@ -59,7 +59,7 @@ export function PetRegionsResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     return {
-        
+
         'meta': ResponseMetaFromJSON(json['meta']),
         'data': !exists(json, 'data') ? undefined : json['data'],
     };
@@ -73,7 +73,7 @@ export function PetRegionsResponseToJSON(value?: PetRegionsResponse | null): any
         return null;
     }
     return {
-        
+
         'meta': ResponseMetaToJSON(value.meta),
         'data': value.data,
     };

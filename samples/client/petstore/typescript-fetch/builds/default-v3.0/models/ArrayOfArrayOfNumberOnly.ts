@@ -30,7 +30,7 @@ export interface ArrayOfArrayOfNumberOnly {
 /**
  * Check if a given object implements the ArrayOfArrayOfNumberOnly interface.
  */
-export function instanceOfArrayOfArrayOfNumberOnly(value: object): boolean {
+export function instanceOfArrayOfArrayOfNumberOnly(value: object): value is ArrayOfArrayOfNumberOnly {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function ArrayOfArrayOfNumberOnlyFromJSONTyped(json: any, ignoreDiscrimin
         return json;
     }
     return {
-        
+
         'arrayArrayNumber': !exists(json, 'ArrayArrayNumber') ? undefined : json['ArrayArrayNumber'],
     };
 }
@@ -58,7 +58,7 @@ export function ArrayOfArrayOfNumberOnlyToJSON(value?: ArrayOfArrayOfNumberOnly 
         return null;
     }
     return {
-        
+
         'ArrayArrayNumber': value.arrayArrayNumber,
     };
 }

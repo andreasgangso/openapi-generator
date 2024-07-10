@@ -43,7 +43,7 @@ export interface MatchingParts {
 /**
  * Check if a given object implements the MatchingParts interface.
  */
-export function instanceOfMatchingParts(value: object): boolean {
+export function instanceOfMatchingParts(value: object): value is MatchingParts {
     let isInstance = true;
     isInstance = isInstance && "connected" in value;
     isInstance = isInstance && "related" in value;
@@ -60,7 +60,7 @@ export function MatchingPartsFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     return {
-        
+
         'connected': ((json['connected'] as Array<any>).map(PartFromJSON)),
         'related': ((json['related'] as Array<any>).map(PartFromJSON)),
     };
@@ -74,7 +74,7 @@ export function MatchingPartsToJSON(value?: MatchingParts | null): any {
         return null;
     }
     return {
-        
+
         'connected': ((value.connected as Array<any>).map(PartToJSON)),
         'related': ((value.related as Array<any>).map(PartToJSON)),
     };

@@ -36,7 +36,7 @@ export interface Model200Response {
 /**
  * Check if a given object implements the Model200Response interface.
  */
-export function instanceOfModel200Response(value: object): boolean {
+export function instanceOfModel200Response(value: object): value is Model200Response {
     let isInstance = true;
 
     return isInstance;
@@ -51,7 +51,7 @@ export function Model200ResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         return json;
     }
     return {
-        
+
         'name': !exists(json, 'name') ? undefined : json['name'],
         '_class': !exists(json, 'class') ? undefined : json['class'],
     };
@@ -65,7 +65,7 @@ export function Model200ResponseToJSON(value?: Model200Response | null): any {
         return null;
     }
     return {
-        
+
         'name': value.name,
         'class': value._class,
     };

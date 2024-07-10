@@ -49,7 +49,7 @@ export interface ArrayTest {
 /**
  * Check if a given object implements the ArrayTest interface.
  */
-export function instanceOfArrayTest(value: object): boolean {
+export function instanceOfArrayTest(value: object): value is ArrayTest {
     let isInstance = true;
 
     return isInstance;
@@ -64,7 +64,7 @@ export function ArrayTestFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         return json;
     }
     return {
-        
+
         'arrayOfString': !exists(json, 'array_of_string') ? undefined : json['array_of_string'],
         'arrayArrayOfInteger': !exists(json, 'array_array_of_integer') ? undefined : json['array_array_of_integer'],
         'arrayArrayOfModel': !exists(json, 'array_array_of_model') ? undefined : json['array_array_of_model'],
@@ -79,7 +79,7 @@ export function ArrayTestToJSON(value?: ArrayTest | null): any {
         return null;
     }
     return {
-        
+
         'array_of_string': value.arrayOfString,
         'array_array_of_integer': value.arrayArrayOfInteger,
         'array_array_of_model': value.arrayArrayOfModel,

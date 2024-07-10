@@ -60,7 +60,7 @@ export interface Capitalization {
 /**
  * Check if a given object implements the Capitalization interface.
  */
-export function instanceOfCapitalization(value: object): boolean {
+export function instanceOfCapitalization(value: object): value is Capitalization {
     let isInstance = true;
 
     return isInstance;
@@ -75,7 +75,7 @@ export function CapitalizationFromJSONTyped(json: any, ignoreDiscriminator: bool
         return json;
     }
     return {
-        
+
         'smallCamel': !exists(json, 'smallCamel') ? undefined : json['smallCamel'],
         'capitalCamel': !exists(json, 'CapitalCamel') ? undefined : json['CapitalCamel'],
         'smallSnake': !exists(json, 'small_Snake') ? undefined : json['small_Snake'],
@@ -93,7 +93,7 @@ export function CapitalizationToJSON(value?: Capitalization | null): any {
         return null;
     }
     return {
-        
+
         'smallCamel': value.smallCamel,
         'CapitalCamel': value.capitalCamel,
         'small_Snake': value.smallSnake,

@@ -49,7 +49,7 @@ export interface FindPetsByUserResponse {
 /**
  * Check if a given object implements the FindPetsByUserResponse interface.
  */
-export function instanceOfFindPetsByUserResponse(value: object): boolean {
+export function instanceOfFindPetsByUserResponse(value: object): value is FindPetsByUserResponse {
     let isInstance = true;
     isInstance = isInstance && "meta" in value;
 
@@ -65,7 +65,7 @@ export function FindPetsByUserResponseFromJSONTyped(json: any, ignoreDiscriminat
         return json;
     }
     return {
-        
+
         'meta': ResponseMetaFromJSON(json['meta']),
         'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(UserFromJSON)),
     };
@@ -79,7 +79,7 @@ export function FindPetsByUserResponseToJSON(value?: FindPetsByUserResponse | nu
         return null;
     }
     return {
-        
+
         'meta': ResponseMetaToJSON(value.meta),
         'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(UserToJSON)),
     };

@@ -127,7 +127,7 @@ export interface FormatTest {
 /**
  * Check if a given object implements the FormatTest interface.
  */
-export function instanceOfFormatTest(value: object): boolean {
+export function instanceOfFormatTest(value: object): value is FormatTest {
     let isInstance = true;
     isInstance = isInstance && "number" in value;
     isInstance = isInstance && "_byte" in value;
@@ -146,7 +146,7 @@ export function FormatTestFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     return {
-        
+
         'integer': !exists(json, 'integer') ? undefined : json['integer'],
         'int32': !exists(json, 'int32') ? undefined : json['int32'],
         'int64': !exists(json, 'int64') ? undefined : json['int64'],
@@ -174,7 +174,7 @@ export function FormatTestToJSON(value?: FormatTest | null): any {
         return null;
     }
     return {
-        
+
         'integer': value.integer,
         'int32': value.int32,
         'int64': value.int64,
@@ -185,7 +185,7 @@ export function FormatTestToJSON(value?: FormatTest | null): any {
         'string': value.string,
         'byte': value._byte,
         'binary': value.binary,
-        'date': (value.date.toISOString().substr(0,10)),
+        'date': (value.date.toISOString().substr(0, 10)),
         'dateTime': value.dateTime === undefined ? undefined : (value.dateTime.toISOString()),
         'uuid': value.uuid,
         'password': value.password,

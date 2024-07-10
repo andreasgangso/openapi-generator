@@ -59,7 +59,7 @@ export type MapTestMapOfEnumStringEnum = typeof MapTestMapOfEnumStringEnum[keyof
 /**
  * Check if a given object implements the MapTest interface.
  */
-export function instanceOfMapTest(value: object): boolean {
+export function instanceOfMapTest(value: object): value is MapTest {
     let isInstance = true;
 
     return isInstance;
@@ -74,7 +74,7 @@ export function MapTestFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         return json;
     }
     return {
-        
+
         'mapMapOfString': !exists(json, 'map_map_of_string') ? undefined : json['map_map_of_string'],
         'mapOfEnumString': !exists(json, 'map_of_enum_string') ? undefined : json['map_of_enum_string'],
         'directMap': !exists(json, 'direct_map') ? undefined : json['direct_map'],
@@ -90,7 +90,7 @@ export function MapTestToJSON(value?: MapTest | null): any {
         return null;
     }
     return {
-        
+
         'map_map_of_string': value.mapMapOfString,
         'map_of_enum_string': value.mapOfEnumString,
         'direct_map': value.directMap,

@@ -30,7 +30,7 @@ export interface DeprecatedObject {
 /**
  * Check if a given object implements the DeprecatedObject interface.
  */
-export function instanceOfDeprecatedObject(value: object): boolean {
+export function instanceOfDeprecatedObject(value: object): value is DeprecatedObject {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function DeprecatedObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
         return json;
     }
     return {
-        
+
         'name': !exists(json, 'name') ? undefined : json['name'],
     };
 }
@@ -58,7 +58,7 @@ export function DeprecatedObjectToJSON(value?: DeprecatedObject | null): any {
         return null;
     }
     return {
-        
+
         'name': value.name,
     };
 }

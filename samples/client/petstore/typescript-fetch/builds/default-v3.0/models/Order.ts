@@ -72,7 +72,7 @@ export type OrderStatusEnum = typeof OrderStatusEnum[keyof typeof OrderStatusEnu
 /**
  * Check if a given object implements the Order interface.
  */
-export function instanceOfOrder(value: object): boolean {
+export function instanceOfOrder(value: object): value is Order {
     let isInstance = true;
 
     return isInstance;
@@ -87,7 +87,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         return json;
     }
     return {
-        
+
         'id': !exists(json, 'id') ? undefined : json['id'],
         'petId': !exists(json, 'petId') ? undefined : json['petId'],
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
@@ -105,7 +105,7 @@ export function OrderToJSON(value?: Order | null): any {
         return null;
     }
     return {
-        
+
         'id': value.id,
         'petId': value.petId,
         'quantity': value.quantity,

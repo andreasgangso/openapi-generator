@@ -36,7 +36,7 @@ export interface AdditionalPropertiesClass {
 /**
  * Check if a given object implements the AdditionalPropertiesClass interface.
  */
-export function instanceOfAdditionalPropertiesClass(value: object): boolean {
+export function instanceOfAdditionalPropertiesClass(value: object): value is AdditionalPropertiesClass {
     let isInstance = true;
 
     return isInstance;
@@ -51,7 +51,7 @@ export function AdditionalPropertiesClassFromJSONTyped(json: any, ignoreDiscrimi
         return json;
     }
     return {
-        
+
         'mapProperty': !exists(json, 'map_property') ? undefined : json['map_property'],
         'mapOfMapProperty': !exists(json, 'map_of_map_property') ? undefined : json['map_of_map_property'],
     };
@@ -65,7 +65,7 @@ export function AdditionalPropertiesClassToJSON(value?: AdditionalPropertiesClas
         return null;
     }
     return {
-        
+
         'map_property': value.mapProperty,
         'map_of_map_property': value.mapOfMapProperty,
     };

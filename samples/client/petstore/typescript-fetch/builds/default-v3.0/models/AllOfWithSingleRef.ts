@@ -43,7 +43,7 @@ export interface AllOfWithSingleRef {
 /**
  * Check if a given object implements the AllOfWithSingleRef interface.
  */
-export function instanceOfAllOfWithSingleRef(value: object): boolean {
+export function instanceOfAllOfWithSingleRef(value: object): value is AllOfWithSingleRef {
     let isInstance = true;
 
     return isInstance;
@@ -58,7 +58,7 @@ export function AllOfWithSingleRefFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     return {
-        
+
         'username': !exists(json, 'username') ? undefined : json['username'],
         'singleRefType': !exists(json, 'SingleRefType') ? undefined : SingleRefTypeFromJSON(json['SingleRefType']),
     };
@@ -72,7 +72,7 @@ export function AllOfWithSingleRefToJSON(value?: AllOfWithSingleRef | null): any
         return null;
     }
     return {
-        
+
         'username': value.username,
         'SingleRefType': SingleRefTypeToJSON(value.singleRefType),
     };

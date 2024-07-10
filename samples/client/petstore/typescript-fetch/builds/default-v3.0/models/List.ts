@@ -30,7 +30,7 @@ export interface List {
 /**
  * Check if a given object implements the List interface.
  */
-export function instanceOfList(value: object): boolean {
+export function instanceOfList(value: object): value is List {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function ListFromJSONTyped(json: any, ignoreDiscriminator: boolean): List
         return json;
     }
     return {
-        
+
         '_123list': !exists(json, '123-list') ? undefined : json['123-list'],
     };
 }
@@ -58,7 +58,7 @@ export function ListToJSON(value?: List | null): any {
         return null;
     }
     return {
-        
+
         '123-list': value._123list,
     };
 }

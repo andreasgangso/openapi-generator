@@ -72,7 +72,7 @@ export interface User {
 /**
  * Check if a given object implements the User interface.
  */
-export function instanceOfUser(value: object): boolean {
+export function instanceOfUser(value: object): value is User {
     let isInstance = true;
 
     return isInstance;
@@ -87,7 +87,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         return json;
     }
     return {
-        
+
         'id': !exists(json, 'id') ? undefined : json['id'],
         'username': !exists(json, 'username') ? undefined : json['username'],
         'firstName': !exists(json, 'firstName') ? undefined : json['firstName'],
@@ -107,7 +107,7 @@ export function UserToJSON(value?: User | null): any {
         return null;
     }
     return {
-        
+
         'id': value.id,
         'username': value.username,
         'firstName': value.firstName,

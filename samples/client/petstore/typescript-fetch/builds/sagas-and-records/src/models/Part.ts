@@ -36,7 +36,7 @@ export interface Part {
 /**
  * Check if a given object implements the Part interface.
  */
-export function instanceOfPart(value: object): boolean {
+export function instanceOfPart(value: object): value is Part {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
@@ -53,7 +53,7 @@ export function PartFromJSONTyped(json: any, ignoreDiscriminator: boolean): Part
         return json;
     }
     return {
-        
+
         'id': json['id'],
         'name': json['name'],
     };
@@ -67,7 +67,7 @@ export function PartToJSON(value?: Part | null): any {
         return null;
     }
     return {
-        
+
         'id': value.id,
         'name': value.name,
     };

@@ -30,7 +30,7 @@ export interface ModelFile {
 /**
  * Check if a given object implements the ModelFile interface.
  */
-export function instanceOfModelFile(value: object): boolean {
+export function instanceOfModelFile(value: object): value is ModelFile {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function ModelFileFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         return json;
     }
     return {
-        
+
         'sourceURI': !exists(json, 'sourceURI') ? undefined : json['sourceURI'],
     };
 }
@@ -58,7 +58,7 @@ export function ModelFileToJSON(value?: ModelFile | null): any {
         return null;
     }
     return {
-        
+
         'sourceURI': value.sourceURI,
     };
 }

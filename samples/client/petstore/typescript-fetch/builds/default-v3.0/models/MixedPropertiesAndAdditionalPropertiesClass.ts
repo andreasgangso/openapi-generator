@@ -49,7 +49,7 @@ export interface MixedPropertiesAndAdditionalPropertiesClass {
 /**
  * Check if a given object implements the MixedPropertiesAndAdditionalPropertiesClass interface.
  */
-export function instanceOfMixedPropertiesAndAdditionalPropertiesClass(value: object): boolean {
+export function instanceOfMixedPropertiesAndAdditionalPropertiesClass(value: object): value is MixedPropertiesAndAdditionalPropertiesClass {
     let isInstance = true;
 
     return isInstance;
@@ -64,7 +64,7 @@ export function MixedPropertiesAndAdditionalPropertiesClassFromJSONTyped(json: a
         return json;
     }
     return {
-        
+
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
         'dateTime': !exists(json, 'dateTime') ? undefined : (new Date(json['dateTime'])),
         'map': !exists(json, 'map') ? undefined : (mapValues(json['map'], AnimalFromJSON)),
@@ -79,7 +79,7 @@ export function MixedPropertiesAndAdditionalPropertiesClassToJSON(value?: MixedP
         return null;
     }
     return {
-        
+
         'uuid': value.uuid,
         'dateTime': value.dateTime === undefined ? undefined : (value.dateTime.toISOString()),
         'map': value.map === undefined ? undefined : (mapValues(value.map, AnimalToJSON)),

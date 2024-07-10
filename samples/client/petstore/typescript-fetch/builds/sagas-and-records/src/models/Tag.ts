@@ -36,7 +36,7 @@ export interface Tag {
 /**
  * Check if a given object implements the Tag interface.
  */
-export function instanceOfTag(value: object): boolean {
+export function instanceOfTag(value: object): value is Tag {
     let isInstance = true;
 
     return isInstance;
@@ -51,7 +51,7 @@ export function TagFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tag {
         return json;
     }
     return {
-        
+
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
     };
@@ -65,7 +65,7 @@ export function TagToJSON(value?: Tag | null): any {
         return null;
     }
     return {
-        
+
         'id': value.id,
         'name': value.name,
     };

@@ -36,7 +36,7 @@ export interface Category {
 /**
  * Check if a given object implements the Category interface.
  */
-export function instanceOfCategory(value: object): boolean {
+export function instanceOfCategory(value: object): value is Category {
     let isInstance = true;
     isInstance = isInstance && "name" in value;
 
@@ -52,7 +52,7 @@ export function CategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     return {
-        
+
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': json['name'],
     };
@@ -66,7 +66,7 @@ export function CategoryToJSON(value?: Category | null): any {
         return null;
     }
     return {
-        
+
         'id': value.id,
         'name': value.name,
     };

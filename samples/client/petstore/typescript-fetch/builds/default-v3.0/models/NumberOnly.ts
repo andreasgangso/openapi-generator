@@ -30,7 +30,7 @@ export interface NumberOnly {
 /**
  * Check if a given object implements the NumberOnly interface.
  */
-export function instanceOfNumberOnly(value: object): boolean {
+export function instanceOfNumberOnly(value: object): value is NumberOnly {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function NumberOnlyFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     return {
-        
+
         'justNumber': !exists(json, 'JustNumber') ? undefined : json['JustNumber'],
     };
 }
@@ -58,7 +58,7 @@ export function NumberOnlyToJSON(value?: NumberOnly | null): any {
         return null;
     }
     return {
-        
+
         'JustNumber': value.justNumber,
     };
 }

@@ -86,7 +86,7 @@ export enum FakeEnumRequestGetInline200ResponseNullableNumberEnumEnum {
 /**
  * Check if a given object implements the FakeEnumRequestGetInline200Response interface.
  */
-export function instanceOfFakeEnumRequestGetInline200Response(value: object): boolean {
+export function instanceOfFakeEnumRequestGetInline200Response(value: object): value is FakeEnumRequestGetInline200Response {
     let isInstance = true;
 
     return isInstance;
@@ -101,7 +101,7 @@ export function FakeEnumRequestGetInline200ResponseFromJSONTyped(json: any, igno
         return json;
     }
     return {
-        
+
         'stringEnum': !exists(json, 'string-enum') ? undefined : json['string-enum'],
         'nullableStringEnum': !exists(json, 'nullable-string-enum') ? undefined : json['nullable-string-enum'],
         'numberEnum': !exists(json, 'number-enum') ? undefined : json['number-enum'],
@@ -117,7 +117,7 @@ export function FakeEnumRequestGetInline200ResponseToJSON(value?: FakeEnumReques
         return null;
     }
     return {
-        
+
         'string-enum': value.stringEnum,
         'nullable-string-enum': value.nullableStringEnum,
         'number-enum': value.numberEnum,

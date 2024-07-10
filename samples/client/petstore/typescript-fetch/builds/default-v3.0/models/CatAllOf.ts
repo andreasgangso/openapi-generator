@@ -30,7 +30,7 @@ export interface CatAllOf {
 /**
  * Check if a given object implements the CatAllOf interface.
  */
-export function instanceOfCatAllOf(value: object): boolean {
+export function instanceOfCatAllOf(value: object): value is CatAllOf {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function CatAllOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     return {
-        
+
         'declawed': !exists(json, 'declawed') ? undefined : json['declawed'],
     };
 }
@@ -58,7 +58,7 @@ export function CatAllOfToJSON(value?: CatAllOf | null): any {
         return null;
     }
     return {
-        
+
         'declawed': value.declawed,
     };
 }

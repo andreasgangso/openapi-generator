@@ -37,7 +37,7 @@ export interface FooGetDefaultResponse {
 /**
  * Check if a given object implements the FooGetDefaultResponse interface.
  */
-export function instanceOfFooGetDefaultResponse(value: object): boolean {
+export function instanceOfFooGetDefaultResponse(value: object): value is FooGetDefaultResponse {
     let isInstance = true;
 
     return isInstance;
@@ -52,7 +52,7 @@ export function FooGetDefaultResponseFromJSONTyped(json: any, ignoreDiscriminato
         return json;
     }
     return {
-        
+
         'string': !exists(json, 'string') ? undefined : FooFromJSON(json['string']),
     };
 }
@@ -65,7 +65,7 @@ export function FooGetDefaultResponseToJSON(value?: FooGetDefaultResponse | null
         return null;
     }
     return {
-        
+
         'string': FooToJSON(value.string),
     };
 }

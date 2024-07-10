@@ -49,7 +49,7 @@ export interface GetMatchingPartsResponse {
 /**
  * Check if a given object implements the GetMatchingPartsResponse interface.
  */
-export function instanceOfGetMatchingPartsResponse(value: object): boolean {
+export function instanceOfGetMatchingPartsResponse(value: object): value is GetMatchingPartsResponse {
     let isInstance = true;
     isInstance = isInstance && "meta" in value;
 
@@ -65,7 +65,7 @@ export function GetMatchingPartsResponseFromJSONTyped(json: any, ignoreDiscrimin
         return json;
     }
     return {
-        
+
         'meta': ResponseMetaFromJSON(json['meta']),
         'data': !exists(json, 'data') ? undefined : MatchingPartsFromJSON(json['data']),
     };
@@ -79,7 +79,7 @@ export function GetMatchingPartsResponseToJSON(value?: GetMatchingPartsResponse 
         return null;
     }
     return {
-        
+
         'meta': ResponseMetaToJSON(value.meta),
         'data': MatchingPartsToJSON(value.data),
     };

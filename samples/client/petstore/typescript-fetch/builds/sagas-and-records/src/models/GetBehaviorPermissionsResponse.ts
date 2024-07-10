@@ -43,7 +43,7 @@ export interface GetBehaviorPermissionsResponse {
 /**
  * Check if a given object implements the GetBehaviorPermissionsResponse interface.
  */
-export function instanceOfGetBehaviorPermissionsResponse(value: object): boolean {
+export function instanceOfGetBehaviorPermissionsResponse(value: object): value is GetBehaviorPermissionsResponse {
     let isInstance = true;
     isInstance = isInstance && "meta" in value;
 
@@ -59,7 +59,7 @@ export function GetBehaviorPermissionsResponseFromJSONTyped(json: any, ignoreDis
         return json;
     }
     return {
-        
+
         'meta': ResponseMetaFromJSON(json['meta']),
         'data': !exists(json, 'data') ? undefined : json['data'],
     };
@@ -73,7 +73,7 @@ export function GetBehaviorPermissionsResponseToJSON(value?: GetBehaviorPermissi
         return null;
     }
     return {
-        
+
         'meta': ResponseMetaToJSON(value.meta),
         'data': value.data,
     };

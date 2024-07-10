@@ -30,7 +30,7 @@ export interface HealthCheckResult {
 /**
  * Check if a given object implements the HealthCheckResult interface.
  */
-export function instanceOfHealthCheckResult(value: object): boolean {
+export function instanceOfHealthCheckResult(value: object): value is HealthCheckResult {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function HealthCheckResultFromJSONTyped(json: any, ignoreDiscriminator: b
         return json;
     }
     return {
-        
+
         'nullableMessage': !exists(json, 'NullableMessage') ? undefined : json['NullableMessage'],
     };
 }
@@ -58,7 +58,7 @@ export function HealthCheckResultToJSON(value?: HealthCheckResult | null): any {
         return null;
     }
     return {
-        
+
         'NullableMessage': value.nullableMessage,
     };
 }

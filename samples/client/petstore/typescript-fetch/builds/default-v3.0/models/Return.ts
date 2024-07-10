@@ -30,7 +30,7 @@ export interface Return {
 /**
  * Check if a given object implements the Return interface.
  */
-export function instanceOfReturn(value: object): boolean {
+export function instanceOfReturn(value: object): value is Return {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function ReturnFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         return json;
     }
     return {
-        
+
         '_return': !exists(json, 'return') ? undefined : json['return'],
     };
 }
@@ -58,7 +58,7 @@ export function ReturnToJSON(value?: Return | null): any {
         return null;
     }
     return {
-        
+
         'return': value._return,
     };
 }

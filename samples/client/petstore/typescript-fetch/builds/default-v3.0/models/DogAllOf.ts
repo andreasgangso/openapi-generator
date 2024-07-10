@@ -30,7 +30,7 @@ export interface DogAllOf {
 /**
  * Check if a given object implements the DogAllOf interface.
  */
-export function instanceOfDogAllOf(value: object): boolean {
+export function instanceOfDogAllOf(value: object): value is DogAllOf {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function DogAllOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     return {
-        
+
         'breed': !exists(json, 'breed') ? undefined : json['breed'],
     };
 }
@@ -58,7 +58,7 @@ export function DogAllOfToJSON(value?: DogAllOf | null): any {
         return null;
     }
     return {
-        
+
         'breed': value.breed,
     };
 }

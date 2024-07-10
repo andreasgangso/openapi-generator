@@ -30,7 +30,7 @@ export interface ClassModel {
 /**
  * Check if a given object implements the ClassModel interface.
  */
-export function instanceOfClassModel(value: object): boolean {
+export function instanceOfClassModel(value: object): value is ClassModel {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function ClassModelFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     return {
-        
+
         '_class': !exists(json, '_class') ? undefined : json['_class'],
     };
 }
@@ -58,7 +58,7 @@ export function ClassModelToJSON(value?: ClassModel | null): any {
         return null;
     }
     return {
-        
+
         '_class': value._class,
     };
 }

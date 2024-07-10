@@ -56,7 +56,7 @@ export type EnumArraysArrayEnumEnum = typeof EnumArraysArrayEnumEnum[keyof typeo
 /**
  * Check if a given object implements the EnumArrays interface.
  */
-export function instanceOfEnumArrays(value: object): boolean {
+export function instanceOfEnumArrays(value: object): value is EnumArrays {
     let isInstance = true;
 
     return isInstance;
@@ -71,7 +71,7 @@ export function EnumArraysFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     return {
-        
+
         'justSymbol': !exists(json, 'just_symbol') ? undefined : json['just_symbol'],
         'arrayEnum': !exists(json, 'array_enum') ? undefined : json['array_enum'],
     };
@@ -85,7 +85,7 @@ export function EnumArraysToJSON(value?: EnumArrays | null): any {
         return null;
     }
     return {
-        
+
         'just_symbol': value.justSymbol,
         'array_enum': value.arrayEnum,
     };

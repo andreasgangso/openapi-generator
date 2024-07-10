@@ -49,7 +49,7 @@ export interface GetPetPartTypeResponse {
 /**
  * Check if a given object implements the GetPetPartTypeResponse interface.
  */
-export function instanceOfGetPetPartTypeResponse(value: object): boolean {
+export function instanceOfGetPetPartTypeResponse(value: object): value is GetPetPartTypeResponse {
     let isInstance = true;
     isInstance = isInstance && "meta" in value;
 
@@ -65,7 +65,7 @@ export function GetPetPartTypeResponseFromJSONTyped(json: any, ignoreDiscriminat
         return json;
     }
     return {
-        
+
         'meta': ResponseMetaFromJSON(json['meta']),
         'data': !exists(json, 'data') ? undefined : PetPartTypeFromJSON(json['data']),
     };
@@ -79,7 +79,7 @@ export function GetPetPartTypeResponseToJSON(value?: GetPetPartTypeResponse | nu
         return null;
     }
     return {
-        
+
         'meta': ResponseMetaToJSON(value.meta),
         'data': PetPartTypeToJSON(value.data),
     };

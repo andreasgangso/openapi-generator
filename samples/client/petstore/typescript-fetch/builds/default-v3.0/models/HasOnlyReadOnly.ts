@@ -36,7 +36,7 @@ export interface HasOnlyReadOnly {
 /**
  * Check if a given object implements the HasOnlyReadOnly interface.
  */
-export function instanceOfHasOnlyReadOnly(value: object): boolean {
+export function instanceOfHasOnlyReadOnly(value: object): value is HasOnlyReadOnly {
     let isInstance = true;
 
     return isInstance;
@@ -51,7 +51,7 @@ export function HasOnlyReadOnlyFromJSONTyped(json: any, ignoreDiscriminator: boo
         return json;
     }
     return {
-        
+
         'bar': !exists(json, 'bar') ? undefined : json['bar'],
         'foo': !exists(json, 'foo') ? undefined : json['foo'],
     };
@@ -65,7 +65,7 @@ export function HasOnlyReadOnlyToJSON(value?: HasOnlyReadOnly | null): any {
         return null;
     }
     return {
-        
+
     };
 }
 

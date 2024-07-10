@@ -36,7 +36,7 @@ export interface ReadOnlyFirst {
 /**
  * Check if a given object implements the ReadOnlyFirst interface.
  */
-export function instanceOfReadOnlyFirst(value: object): boolean {
+export function instanceOfReadOnlyFirst(value: object): value is ReadOnlyFirst {
     let isInstance = true;
 
     return isInstance;
@@ -51,7 +51,7 @@ export function ReadOnlyFirstFromJSONTyped(json: any, ignoreDiscriminator: boole
         return json;
     }
     return {
-        
+
         'bar': !exists(json, 'bar') ? undefined : json['bar'],
         'baz': !exists(json, 'baz') ? undefined : json['baz'],
     };
@@ -65,7 +65,7 @@ export function ReadOnlyFirstToJSON(value?: ReadOnlyFirst | null): any {
         return null;
     }
     return {
-        
+
         'baz': value.baz,
     };
 }

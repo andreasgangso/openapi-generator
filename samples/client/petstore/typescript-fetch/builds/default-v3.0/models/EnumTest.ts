@@ -137,7 +137,7 @@ export type EnumTestEnumNumberEnum = typeof EnumTestEnumNumberEnum[keyof typeof 
 /**
  * Check if a given object implements the EnumTest interface.
  */
-export function instanceOfEnumTest(value: object): boolean {
+export function instanceOfEnumTest(value: object): value is EnumTest {
     let isInstance = true;
     isInstance = isInstance && "enumStringRequired" in value;
 
@@ -153,7 +153,7 @@ export function EnumTestFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         return json;
     }
     return {
-        
+
         'enumString': !exists(json, 'enum_string') ? undefined : json['enum_string'],
         'enumStringRequired': json['enum_string_required'],
         'enumInteger': !exists(json, 'enum_integer') ? undefined : json['enum_integer'],
@@ -173,7 +173,7 @@ export function EnumTestToJSON(value?: EnumTest | null): any {
         return null;
     }
     return {
-        
+
         'enum_string': value.enumString,
         'enum_string_required': value.enumStringRequired,
         'enum_integer': value.enumInteger,

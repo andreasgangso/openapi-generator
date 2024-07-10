@@ -30,7 +30,7 @@ export interface SpecialModelName {
 /**
  * Check if a given object implements the SpecialModelName interface.
  */
-export function instanceOfSpecialModelName(value: object): boolean {
+export function instanceOfSpecialModelName(value: object): value is SpecialModelName {
     let isInstance = true;
 
     return isInstance;
@@ -45,7 +45,7 @@ export function SpecialModelNameFromJSONTyped(json: any, ignoreDiscriminator: bo
         return json;
     }
     return {
-        
+
         '$specialPropertyName': !exists(json, '$special[property.name]') ? undefined : json['$special[property.name]'],
     };
 }
@@ -58,7 +58,7 @@ export function SpecialModelNameToJSON(value?: SpecialModelName | null): any {
         return null;
     }
     return {
-        
+
         '$special[property.name]': value.$specialPropertyName,
     };
 }
